@@ -1,0 +1,5 @@
+.dotenv
+node_modules
+chats.json
+week_cache.json
+data.json
