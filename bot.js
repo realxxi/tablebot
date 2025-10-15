@@ -862,7 +862,7 @@ cron.schedule(
   },
 )
 
-console.log("✅ TSTU Bot ishga tushdi!")
+console.log("✅ TSTU Bot ishga tushdi!!!")
 console.log("🤖 Bot tayyor!")
 console.log(`⏰ Server vaqti: ${new Date().toLocaleString()}`)
 console.log(`⏰ Toshkent vaqti: ${new Date().toLocaleString("en-US", { timeZone: "Asia/Tashkent" })}`)
