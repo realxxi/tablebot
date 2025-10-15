@@ -844,24 +844,27 @@ function getTashkentTime() {
   return tashkentTime
 }
 
-// Har daqiqada tekshirish va 8:00 da xabar yuborish
-cron.schedule("* * * * *", () => {
-  const tashkentTime = getTashkentTime()
-  const hours = tashkentTime.getHours()
-  const minutes = tashkentTime.getMinutes()
+// Har kuni 8:00 da (Toshkent vaqti) avtomatik xabar yuborish
+cron.schedule(
+  "0 8 * * *",
+  () => {
+    const now = new Date()
+    const tashkentTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Tashkent" }))
 
-  // Toshkent vaqti bo'yicha 8:00 bo'lsa
-  if (hours === 8 && minutes === 0) {
     console.log(`⏰ 8:00 (Toshkent vaqti) - Avtomatik xabar yuborish boshlandi`)
-    console.log(`   Server vaqti: ${new Date().toLocaleString()}`)
+    console.log(`   Server vaqti: ${now.toLocaleString()}`)
     console.log(`   Toshkent vaqti: ${tashkentTime.toLocaleString()}`)
+
     sendScheduleToAll()
-  }
-})
+  },
+  {
+    timezone: "Asia/Tashkent",
+  },
+)
 
 console.log("✅ TSTU Bot ishga tushdi!")
 console.log("🤖 Bot tayyor!")
 console.log(`⏰ Server vaqti: ${new Date().toLocaleString()}`)
-console.log(`⏰ Toshkent vaqti: ${getTashkentTime().toLocaleString()}`)
+console.log(`⏰ Toshkent vaqti: ${new Date().toLocaleString("en-US", { timeZone: "Asia/Tashkent" })}`)
 console.log("⏰ Avtomatik xabar: Har kuni 8:00 (Toshkent vaqti)")
 console.log("👥 Har bir foydalanuvchi o'z login va parolini kiritadi")
