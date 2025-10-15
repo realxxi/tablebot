@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const TelegramBot = require("node-telegram-bot-api")
 const axios = require("axios")
 const cheerio = require("cheerio")
@@ -5,7 +7,12 @@ const fs = require("fs")
 const cron = require("node-cron")
 
 // Bot ma'lumotlari
-const TOKEN = "7961346657:AAGe8gO0wQNGrOEDjh4xSJIbwT11e0p_ppc"
+const TOKEN = process.env.BOT_TOKEN
+
+if (!TOKEN) {
+  console.error("❌ BOT_TOKEN topilmadi! .env faylida BOT_TOKEN ni sozlang.")
+  process.exit(1)
+}
 
 const bot = new TelegramBot(TOKEN, { polling: true })
 
@@ -862,7 +869,7 @@ cron.schedule(
   },
 )
 
-console.log("✅ TSTU Bot ishga tushdi!!!")
+console.log("✅ TSTU Bot ishga tushdi!")
 console.log("🤖 Bot tayyor!")
 console.log(`⏰ Server vaqti: ${new Date().toLocaleString()}`)
 console.log(`⏰ Toshkent vaqti: ${new Date().toLocaleString("en-US", { timeZone: "Asia/Tashkent" })}`)
